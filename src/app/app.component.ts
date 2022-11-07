@@ -8,7 +8,8 @@ import {Movie} from "./model/Movie";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'angular-h1';
+  title = 'angular-h1'
+  public movies: Movie[] = [];
 
   constructor(private movieService: MovieService) {
   }
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
   public fetchMovies() {
     this.movieService.fetchMovies().subscribe({
       next: (movies: Movie[]) => {
+        this.movies = movies;
         console.log(movies);
       }
     })
