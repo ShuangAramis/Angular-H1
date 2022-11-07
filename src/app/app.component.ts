@@ -21,8 +21,11 @@ export class AppComponent implements OnInit {
   public fetchMovies() {
     this.movieService.fetchMovies().subscribe({
       next: (movies: Movie[]) => {
-        this.movies = movies;
-        console.log(movies);
+        this.movies = movies.sort((movieA, movieB) => {
+          const dateA = new Date(movieA.release_date);
+          const dateB = new Date(movieB.release_date);
+          return dateB > dateA ? 1 : -1;
+        });
       }
     })
   }
